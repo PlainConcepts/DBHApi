@@ -1,5 +1,7 @@
 # Developer Browser History Api 
 
+[![Build Status](https://travis-ci.org/PlainConcepts/DBHPApi.png)](https://travis-ci.org/PlainConcepts/DBHApi)
+[![Coverage Status](https://coveralls.io/repos/PlainConcepts/DBHApi/badge.png)](https://coveralls.io/r/PlainConcepts/DBHApi)
 
 TODO
 Developer Browser History Api (DBHApi) is a Rest API for DBHPlugin ....

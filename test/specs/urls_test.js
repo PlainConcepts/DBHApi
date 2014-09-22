@@ -1,5 +1,5 @@
 var request = require('supertest')
-    , app = require('../app');
+    , app = require('../../app');
 
 describe('GET /api/urls', function () {
 
