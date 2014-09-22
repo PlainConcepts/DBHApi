@@ -1,0 +1,36 @@
+# Developer Browser History Api 
+
+
+TODO
+Developer Browser History Api (DBHApi) is a Rest API for DBHPlugin ....
+
+
+## Installation from this repo
+
+
+Clone this repo and install the dependencies:
+
+* [nodejs](http://nodejs.org/)
+* [mocha](http://bower.io/)  -- `npm install -g mocha`
+* Install node dependencies -- `npm install`
+
+
+## Scripts
+
+
+`npm start`: 
+Starts the API REST service
+
+
+`npm test`: 
+Runs the tests
+
+
+
+
+
+
+
+
+
+
