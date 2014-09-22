@@ -3,3 +3,12 @@ node_js:
   - "0.10"
 script: "npm run-script test-ci"
 after_script: "npm install coveralls@2.10.0 && cat ./test/coverage/lcov.info | coveralls"
+
+
+notifications:
+  webhooks:
+    urls:
+      - https://$dbhapi-test:6u7jmMJRoCD8Aze7wTvxSeFfqKvYdNfLyn0ehCQgmgpM4r89NuhAXrRzGtbP@dbhapi-test.scm.azurewebsites.net/deploy
+    on_success: always
+    on_failure: never
+    on_start: false

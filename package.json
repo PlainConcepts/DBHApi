@@ -1,5 +1,6 @@
 {
   "name": "DBHApi",
+  "subdomain": "dbhapi",
   "version": "0.0.1",
   "scripts": {
     "start": "node ./bin/www",
@@ -22,5 +23,6 @@
     "mocha": "~1.21.4",
     "should": "~4.0.4",
     "supertest": "~0.13.0"
-  }
+  },
+   "engines" : { "node" : ">=0.10.0" }
 }

@@ -2,7 +2,7 @@ var express    = require('express');
 var app        = express();
 var bodyParser = require('body-parser');
 var logger     = require('morgan');
-var urls      =  require('./routes/urls') ;
+var urls       = require('./routes/urls') ;
 
 
 
@@ -11,7 +11,6 @@ app.use(logger('dev'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 
 //API REST ROUTES
 app.use('/api/urls', urls);
@@ -24,6 +23,7 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
+
 
 // error handlers
 
