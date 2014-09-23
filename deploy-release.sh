@@ -3,7 +3,7 @@ set -e
 
 # Sync the contents of this directory where the site should have been built
 SOURCE_DIR=./
-REPO=https://${GIT_TOKEN}@github.com/PlainConcepts/DBHApi.git
+REPO=https://${GIT_TOKEN}@github.com/${GIT_REPO_NAME}.git
 
 if [ ! -d "$SOURCE_DIR" ]; then
   echo "SOURCE_DIR ($SOURCE_DIR) does not exist, build the source directory before deploying"
@@ -36,13 +36,9 @@ REV=$(git rev-parse HEAD)
 git config --global user.email ${GIT_EMAIL}
 git config --global user.name ${GIT_USER}
 git remote set-url origin $REPO
-git clone --branch $TARGET_BRANCH $REPO ${TARGET_DIR}
 
-rsync -rt --delete --exclude=".git" --exclude=".travis.yml" $SOURCE_DIR/ $TARGET_DIR/
-cd $TARGET_DIR
-git add -A .
-git commit --allow-empty -m "Built from travis. commit $REV"
-echo '2'
+git checkout $TARGET_BRANCH
+git rebase $DEPLOY_BRANCH
 git push $REPO $TARGET_BRANCH
-echo '3'
+
 
