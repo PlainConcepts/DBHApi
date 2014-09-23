@@ -56,6 +56,7 @@ echo TARGET_DIR: ${TARGET_DIR}
 echo '0'
 REV=$(git rev-parse HEAD)
 
+git remote set-url origin https://${GIT_TOKEN}@github.com/PlainConcepts/DBHApi.git
 git clone --branch ${TARGET_BRANCH} https://${GIT_TOKEN}@github.com/PlainConcepts/DBHApi.git ${TARGET_DIR}
 
 
