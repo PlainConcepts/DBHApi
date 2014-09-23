@@ -1,8 +1,19 @@
 language: node_js
 node_js:
   - "0.10"
+env:
+  global:
+    - ENCRYPTION_LABEL="6f547b72b703"
+    - GIT_NAME="plaingithub"
+    - GIT_EMAIL="plaingithub@gmail.com"
+    - DEPLOY_BRANCH="master"
+    - TARGET_BRANCH="release"
 branches:
   only:
     - master
 script: "npm run-script test-ci"
 after_script: "npm install coveralls@2.10.0 && cat ./test/coverage/lcov.info | coveralls"
+after_success:
+  - "chmod +x deploy.sh"
+  - "./deploy.sh"
+
