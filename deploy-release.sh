@@ -1,9 +1,11 @@
 #!/bin/sh
 set -e
 
+echo `pwd`
+echo `ls`
 
 # Sync the contents of this directory where the site should have been built
-SOURCE_DIR=_site
+SOURCE_DIR=./
 
 if [ ! -d "$SOURCE_DIR" ]; then
   echo "SOURCE_DIR ($SOURCE_DIR) does not exist, build the source directory before deploying"
