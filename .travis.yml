@@ -4,7 +4,7 @@ node_js:
 env:
   global:
   - DEPLOY_BRANCH="master"
-  - TARGET_BRANCH="release"
+  - TARGET_BRANCH="realease"
   - secure: X9nN+Oqo77i+b2ZmPCWM1PgftMGAjD5pa4V/K03eYDoMjRv0J+dhDeVSqQsQ4bOpV/E20/BJkaYTyLC1sdLWwQm7ugFXqhSCWLUugrXfthOQrXqDh+75375leKXK+gWfFr9JqRwl4HC/GE5niaJEG9Y4iwnH10uqAk3Q2G9yvLA=
 branches:
   only:

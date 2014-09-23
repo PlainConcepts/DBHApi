@@ -40,7 +40,7 @@ echo '0'
 REV=$(git rev-parse HEAD)
 
 git remote set-url origin https://${GIT_TOKEN}@github.com/PlainConcepts/DBHApi.git
-git clone https://${GIT_TOKEN}@github.com/PlainConcepts/DBHApi.git ${TARGET_DIR}
+git clone --branch realease https://${GIT_TOKEN}@github.com/PlainConcepts/DBHApi.git ${TARGET_DIR}
 
 
 echo '1'
@@ -49,6 +49,6 @@ cd $TARGET_DIR
 git add -A .
 git commit --allow-empty -m "Built from commit $REV"
 echo '2'
-git push https://${GIT_TOKEN}@github.com/PlainConcepts/DBHApi.git remotes/origin/$TARGET_BRANCH
+git push https://${GIT_TOKEN}@github.com/PlainConcepts/DBHApi.git $TARGET_BRANCH
 echo '3'
 
