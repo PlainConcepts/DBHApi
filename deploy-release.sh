@@ -32,6 +32,7 @@ if [ -n "$TRAVIS_BUILD_ID" ]; then
   echo ENCRYPTION_LABEL: $ENCRYPTION_LABEL
   echo GIT_NAME: $GIT_NAME
   echo GIT_EMAIL: $GIT_EMAIL
+
   if [ "$TRAVIS_BRANCH" != "$DEPLOY_BRANCH" ]; then
     echo "Travis should only deploy from the DEPLOY_BRANCH ($DEPLOY_BRANCH) branch"
     exit 0
@@ -52,6 +53,7 @@ if [ -n "$TRAVIS_BUILD_ID" ]; then
       ssh-add deploy_key
       git config --global user.name "$GIT_NAME"
       git config --global user.email "$GIT_EMAIL"
+      git config --global github.token "$GIT_TOKEN"
     fi
   fi
 fi

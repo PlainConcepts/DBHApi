@@ -7,6 +7,7 @@ env:
   - GIT_EMAIL="plaingithub@gmail.com"
   - DEPLOY_BRANCH="master"
   - TARGET_BRANCH="release"
+  - secure: X9nN+Oqo77i+b2ZmPCWM1PgftMGAjD5pa4V/K03eYDoMjRv0J+dhDeVSqQsQ4bOpV/E20/BJkaYTyLC1sdLWwQm7ugFXqhSCWLUugrXfthOQrXqDh+75375leKXK+gWfFr9JqRwl4HC/GE5niaJEG9Y4iwnH10uqAk3Q2G9yvLA=
 branches:
   only:
   - master
@@ -15,6 +16,3 @@ after_script: npm install coveralls@2.10.0 && cat ./test/coverage/lcov.info | co
 after_success:
 - chmod +x deploy-release.sh
 - ./deploy-release.sh
-before_install:
-- openssl aes-256-cbc -K $encrypted_6f547b72b703_key -iv $encrypted_6f547b72b703_iv
-  -in deploy-key.enc -out deploy-key -d
