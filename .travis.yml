@@ -3,16 +3,22 @@ node_js:
 - '0.10'
 env:
   global:
-  - GIT_NAME="plaingithub"
-  - GIT_EMAIL="plaingithub@gmail.com"
   - DEPLOY_BRANCH="master"
   - TARGET_BRANCH="release"
   - secure: X9nN+Oqo77i+b2ZmPCWM1PgftMGAjD5pa4V/K03eYDoMjRv0J+dhDeVSqQsQ4bOpV/E20/BJkaYTyLC1sdLWwQm7ugFXqhSCWLUugrXfthOQrXqDh+75375leKXK+gWfFr9JqRwl4HC/GE5niaJEG9Y4iwnH10uqAk3Q2G9yvLA=
 branches:
   only:
   - master
-script: npm run-script test-ci
-after_script: npm install coveralls@2.10.0 && cat ./test/coverage/lcov.info | coveralls
+
+before_script:
+  - git config --global user.email "plaingithub@gmail.com"
+  - git config --global user.name "plaingithub"
+script:
+  - npm run-script test-ci
+after_script:
+  - npm install coveralls@2.10.0 && cat ./test/coverage/lcov.info | coveralls
 after_success:
-- chmod +x deploy-release.sh
-- ./deploy-release.sh
+  - git config credential.helper "store --file=.git/credentials"
+  - echo "https://${GIT_TOKEN}:@github.com" > .git/credentials
+  - chmod +x deploy-release.sh
+  - ./deploy-release.sh

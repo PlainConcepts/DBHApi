@@ -41,14 +41,7 @@ if [ -n "$TRAVIS_BUILD_ID" ]; then
       echo "Travis should not deploy from pull requests"
       exit 0
     else
-
       REPO=${REPO/git:\/\/github.com\//git@github.com:}
-
-
-
-      git config --global user.name "$GIT_NAME"
-      git config --global user.email "$GIT_EMAIL"
-      git config --global github.token "$GIT_TOKEN"
     fi
   fi
 fi
@@ -59,9 +52,8 @@ echo REPO_NAME: ${REPO_NAME}
 
 TARGET_DIR=$(mktemp -d /tmp/$REPO_NAME.XXXX)
 echo TARGET_DIR: ${TARGET_DIR}
-echo '0'
-ssh -vT git@github.com
 
+echo '0'
 REV=$(git rev-parse HEAD)
 git clone --branch ${TARGET_BRANCH} ${REPO} ${TARGET_DIR}
 echo '1'
