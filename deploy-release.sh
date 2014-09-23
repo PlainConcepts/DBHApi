@@ -55,7 +55,10 @@ echo TARGET_DIR: ${TARGET_DIR}
 
 echo '0'
 REV=$(git rev-parse HEAD)
-git clone --branch ${TARGET_BRANCH} ${REPO} ${TARGET_DIR}
+
+git clone --branch ${TARGET_BRANCH} https://${GIT_TOKEN}@github.com/PlainConcepts/DBHApi.git ${TARGET_DIR}
+
+
 echo '1'
 rsync -rt --delete --exclude=".git" --exclude=".travis.yml" $SOURCE_DIR/ $TARGET_DIR/
 cd $TARGET_DIR
