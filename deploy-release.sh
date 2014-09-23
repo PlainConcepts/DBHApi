@@ -44,7 +44,7 @@ if [ -n "$TRAVIS_BUILD_ID" ]; then
 
       REPO=${REPO/git:\/\/github.com\//git@github.com:}
 
-     
+
 
       git config --global user.name "$GIT_NAME"
       git config --global user.email "$GIT_EMAIL"
@@ -53,17 +53,23 @@ if [ -n "$TRAVIS_BUILD_ID" ]; then
   fi
 fi
 
+
 REPO_NAME=$(basename $REPO)
 echo REPO_NAME: ${REPO_NAME}
 
 TARGET_DIR=$(mktemp -d /tmp/$REPO_NAME.XXXX)
 echo TARGET_DIR: ${TARGET_DIR}
+echo '0'
+ssh -vT git@github.com
 
 REV=$(git rev-parse HEAD)
 git clone --branch ${TARGET_BRANCH} ${REPO} ${TARGET_DIR}
+echo '1'
 rsync -rt --delete --exclude=".git" --exclude=".travis.yml" $SOURCE_DIR/ $TARGET_DIR/
 cd $TARGET_DIR
 git add -A .
 git commit --allow-empty -m "Built from commit $REV"
+echo '2'
 git push $REPO $TARGET_BRANCH
+echo '3'
 
