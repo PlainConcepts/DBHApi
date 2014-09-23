@@ -1,20 +1,20 @@
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
 env:
   global:
-    - ENCRYPTION_LABEL="6f547b72b703"
-    - GIT_NAME="plaingithub"
-    - GIT_EMAIL="plaingithub@gmail.com"
-    - DEPLOY_BRANCH="master"
-    - TARGET_BRANCH="release"
+  - GIT_NAME="plaingithub"
+  - GIT_EMAIL="plaingithub@gmail.com"
+  - DEPLOY_BRANCH="master"
+  - TARGET_BRANCH="release"
 branches:
   only:
-    - master
-before_install: "openssl aes-256-cbc -K $encrypted_6f547b72b703_key -iv $encrypted_6f547b72b703_iv -in deploy_key.enc -out deploy_key -d"
-script: "npm run-script test-ci"
-after_script: "npm install coveralls@2.10.0 && cat ./test/coverage/lcov.info | coveralls"
+  - master
+script: npm run-script test-ci
+after_script: npm install coveralls@2.10.0 && cat ./test/coverage/lcov.info | coveralls
 after_success:
-  - "chmod +x deploy-release.sh"
-  - "./deploy-release.sh"
-
+- chmod +x deploy-release.sh
+- ./deploy-release.sh
+before_install:
+- openssl aes-256-cbc -K $encrypted_6f547b72b703_key -iv $encrypted_6f547b72b703_iv
+  -in deploy-key.enc -out deploy-key -d
