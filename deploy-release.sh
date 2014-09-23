@@ -31,6 +31,8 @@ fi
 git config --global user.email ${GIT_EMAIL}
 git config --global user.name ${GIT_USER}
 
+echo config --global user.email
+echo config --global user.name
 
 REPO_NAME=$(basename $REPO)
 TARGET_DIR=$(mktemp -d /tmp/$REPO_NAME.XXXX)
