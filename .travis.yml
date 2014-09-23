@@ -11,6 +11,7 @@ env:
 branches:
   only:
     - master
+before_install: "openssl aes-256-cbc -K $encrypted_6f547b72b703_key -iv $encrypted_6f547b72b703_iv -in deploy_key.enc -out deploy_key -d"
 script: "npm run-script test-ci"
 after_script: "npm install coveralls@2.10.0 && cat ./test/coverage/lcov.info | coveralls"
 after_success:
