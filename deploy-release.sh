@@ -41,6 +41,6 @@ cd $TARGET_DIR
 
 git checkout $TARGET_BRANCH
 git rebase $DEPLOY_BRANCH
-git push $REPO $TARGET_BRANCH
+git push -u $REPO $TARGET_BRANCH
 
 
