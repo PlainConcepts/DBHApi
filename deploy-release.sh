@@ -3,6 +3,7 @@ set -e
 
 # Sync the contents of this directory where the site should have been built
 SOURCE_DIR=./
+REPO=https://${GIT_TOKEN}@github.com/PlainConcepts/DBHApi.git
 
 if [ ! -d "$SOURCE_DIR" ]; then
   echo "SOURCE_DIR ($SOURCE_DIR) does not exist, build the source directory before deploying"
@@ -23,32 +24,33 @@ if [ -n "$TRAVIS_BUILD_ID" ]; then
     if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
       echo "Travis should not deploy from pull requests"
       exit 0
-    else
-      REPO=${REPO/git:\/\/github.com\//git@github.com:}
     fi
   fi
 fi
 
+git config --global user.email ${GIT_EMAIL}
+git config --global user.name ${GIT_USER}
+
 
 REPO_NAME=$(basename $REPO)
-echo REPO_NAME: ${REPO_NAME}
-
 TARGET_DIR=$(mktemp -d /tmp/$REPO_NAME.XXXX)
-echo TARGET_DIR: ${TARGET_DIR}
 
 echo '0'
 REV=$(git rev-parse HEAD)
 
-git remote set-url origin https://${GIT_TOKEN}@github.com/PlainConcepts/DBHApi.git
-git clone --branch realease https://${GIT_TOKEN}@github.com/PlainConcepts/DBHApi.git ${TARGET_DIR}
+git remote set-url origin $REPO
+
+echo '0.2'
+
+git clone --branch $TARGET_BRANCH $REPO ${TARGET_DIR}
 
 
 echo '1'
 rsync -rt --delete --exclude=".git" --exclude=".travis.yml" $SOURCE_DIR/ $TARGET_DIR/
 cd $TARGET_DIR
 git add -A .
-git commit --allow-empty -m "Built from commit $REV"
+git commit --allow-empty -m "Built from travis. commit $REV"
 echo '2'
-git push https://${GIT_TOKEN}@github.com/PlainConcepts/DBHApi.git $TARGET_BRANCH
+git push $REPO $TARGET_BRANCH
 echo '3'
 

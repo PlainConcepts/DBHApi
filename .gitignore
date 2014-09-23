@@ -2,5 +2,3 @@
 node_modules
 test/results
 test/coverage
-deploy-key
-deploy-key.pub
