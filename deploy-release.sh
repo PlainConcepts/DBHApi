@@ -1,8 +1,5 @@
-#!/bin/sh
+#!/bin/bash
 set -e
-
-echo `pwd`
-echo `ls`
 
 # Sync the contents of this directory where the site should have been built
 SOURCE_DIR=./
