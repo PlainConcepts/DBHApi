@@ -49,6 +49,6 @@ cd $TARGET_DIR
 git add -A .
 git commit --allow-empty -m "Built from commit $REV"
 echo '2'
-git push https://${GIT_TOKEN}@github.com/PlainConcepts/DBHApi.git $TARGET_BRANCH
+git push https://${GIT_TOKEN}@github.com/PlainConcepts/DBHApi.git remotes/origin/$TARGET_BRANCH
 echo '3'
 
