@@ -16,5 +16,4 @@ script:
 after_script:
   - npm install coveralls@2.10.0 && cat ./test/coverage/lcov.info | coveralls
 after_success:
-  - chmod +x deploy-release.sh
   - ./deploy-release.sh
