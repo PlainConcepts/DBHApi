@@ -35,7 +35,9 @@ REV=$(git rev-parse HEAD)
 
 git config --global user.email ${GIT_EMAIL}
 git config --global user.name ${GIT_USER}
-git remote set-url origin $REPO
+
+git clone $REPO $TARGET_DIR
+cd $TARGET_DIR
 
 git checkout $TARGET_BRANCH
 git rebase $DEPLOY_BRANCH
