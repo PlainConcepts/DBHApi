@@ -26,7 +26,7 @@ app.use(function(req, res, next) {
 
 
 // error handlers
-// DEMO GITHUB 3 --- delete
+
 
 // development error handler
 // will print stacktrace
