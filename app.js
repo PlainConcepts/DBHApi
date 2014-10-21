@@ -1,5 +1,6 @@
 var express    = require('express');
 var app        = express();
+var cors       = require('cors');
 var bodyParser = require('body-parser');
 var logger     = require('morgan');
 var urls       = require('./routes/urls') ;
@@ -11,6 +12,8 @@ app.use(logger('dev'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(cors());
 
 //API REST ROUTES
 app.use('/api/urls', urls);
