@@ -1,57 +1,23 @@
-var express    = require('express');
-var app        = express();
-var cors       = require('cors');
-var bodyParser = require('body-parser');
-var logger     = require('morgan');
-var urls       = require('./routes/urls') ;
-
-
+var express         = require('express');
+var app             = express();
+var cors            = require('cors');
+var bodyParser      = require('body-parser');
+var logger          = require('morgan');
+var mongoose        = require('mongoose');
+var routeConfig     = require('./config/routeConfig') ;
+var errorHandlers   = require('./config/errorHandlers') ;
+var settings = require('./config/settings');
 
 app.use(logger('dev'));
-
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(cors());
 
-//API REST ROUTES
-app.use('/api/urls', urls);
+mongoose.connect(settings.testConnectionString);
 
-
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
-
-
-// error handlers
-
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
-
+routeConfig.registerRoutes(app);
+errorHandlers.registerHandlers(app);
 
 module.exports = app;
