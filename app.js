@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-mongoose.connect(settings.testConnectionString);
+mongoose.connect(settings.connectionString);
 
 routeConfig.registerRoutes(app);
 errorHandlers.registerHandlers(app);
