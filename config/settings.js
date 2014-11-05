@@ -16,8 +16,3 @@ var settings = (function (){
 
 
 module.exports = settings;
-
-
-
-module.exports = {
-};
