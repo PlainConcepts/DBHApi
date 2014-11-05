@@ -2,164 +2,159 @@ var express = require('express');
 var router = express.Router();
 
 var urls = [
-    { ico: "google", urls: [ "*://*.google.tld/search*"] },
-    { ico: "stackoverflow", urls: [ "*://stackoverflow.tld/*"] },
-    { ico: "googlegroups", urls: [ "*://groups.google.com/*"] },
+    { ico: "google.png", urls: [ "*://*.google.tld/search*"] },
+    { ico: "stackoverflow.png", urls: [ "*://stackoverflow.tld/*"] },
+    { ico: "googlegroups.ico", urls: [ "*://groups.google.com/*"] },
 
-    { ico: "oreilly", urls: [ "*://answers.oreilly.com/*"] },
-    { ico: "readthedocs", urls: [ "*://*readthedocs.org/*"] },
-    { ico: "apidock", urls: [ "*://apidock.com/*"] },
+    { ico: "oreilly.ico", urls: [ "*://answers.oreilly.com/*"] },
+    { ico: "readthedocs.ico", urls: [ "*://*readthedocs.org/*"] },
+    { ico: "apidock.ico", urls: [ "*://apidock.com/*"] },
 
-    { ico: "mozilla", urls: [ "*://developer.mozilla.org/*"] },
+    { ico: "mozilla.ico", urls: [ "*://developer.mozilla.org/*"] },
 
     // msdn
-    { ico: "msdn", urls: [ "*://msdn.microsoft.com/*", "*://code.msdn.microsoft.com/*", "*://social.msdn.microsoft.com/*"] },
+    { ico: "msdn.png", urls: [ "*://msdn.microsoft.com/*", "*://code.msdn.microsoft.com/*", "*://social.msdn.microsoft.com/*"] },
 
     // javadocs, general
-    { ico: "", urls: [ "*://*/docs/javadocs/*"] },
+    { ico: ".ico", urls: [ "*://*/docs/javadocs/*"] },
 
     // repository sites?
-    { ico: "google", urls: [ "*://code.google.com/*"] },
-    { ico: "github", urls: [ "*://github.tld/*"] },
-    { ico: "blocks", urls: [ "*://bl.ocks.org/*"] },
+    { ico: "google.ico", urls: [ "*://code.google.com/*"] },
+    { ico: "github.ico", urls: [ "*://github.tld/*"] },
+    { ico: "blocks.png", urls: [ "*://bl.ocks.org/*"] },
 
     // clojure
-    { ico: "clojure", urls: [ "*://clojure.org/*", "*://clojure.github.com/clojure/*"] },
+    { ico: "clojure.ico", urls: [ "*://clojure.org/*", "*://clojure.github.com/clojure/*"] },
 
     // nodejs
-    { ico: "nodejs", urls: [ "*://nodejs.org/api/*"] },
+    { ico: "nodejs.ico", urls: [ "*://nodejs.org/api/*"] },
 
     // coffeescript
-    { ico: "coffeescript", urls: [ "*://coffeescript.org/*"] },
+    { ico: "coffeescript.ico", urls: [ "*://coffeescript.org/*"] },
 
     // ruby
-    { ico: "ruby", urls: [ "*://ruby-doc.org/*", "*://www.ruby-doc.org/*"] },
-    { ico: "rubyonrails", urls: [ "*://api.rubyonrails.org/*"] },
+    { ico: "ruby.ico", urls: [ "*://ruby-doc.org/*", "*://www.ruby-doc.org/*"] },
+    { ico: "rubyonrails.ico", urls: [ "*://api.rubyonrails.org/*"] },
 
     // host many projects' documentation, generted by yard.
-    { ico: "rubyinfo", urls: [ "*://rubydoc.info/*"] },
+    { ico: "rubyinfo.png", urls: [ "*://rubydoc.info/*"] },
 
     // route frameworks
-    { ico: "stripe", urls: [ "*://stripe.com/docs/*"] },
-    { ico: "nancy", urls: [ "*://github.com/NancyFx/Nancy/wiki/*"] },
+    { ico: "stripe.png", urls: [ "*://stripe.com/docs/*"] },
+    { ico: "nancy.ico", urls: [ "*://github.com/NancyFx/Nancy/wiki/*"] },
 
     // css-ish
-    { ico: "compass", urls: [ "*://compass-style.org/reference/*"] },
-    { ico: "less", urls: [ "*://lesscss.tld/#*", "*://less-ja.studiomohawk.com/*",
+    { ico: "compass.png", urls: [ "*://compass-style.org/reference/*"] },
+    { ico: "less.ico", urls: [ "*://lesscss.tld/#*", "*://less-ja.studiomohawk.com/*",
         "*://ciembor.github.com/lesscss.org/*", "*://bertzzie.com/post/7/dokumentasi-less-bahasa-indonesia*"] },
 
     // php
-    { ico: "php", urls: [ "*://www.php.net/manual/*"] },
-    { ico: "laravel", urls: [ "*://laravel.com/docs/*"] },
+    { ico: "php.ico", urls: [ "*://www.php.net/manual/*"] },
+    { ico: "laravel.png", urls: [ "*://laravel.com/docs/*"] },
 
     // sql
-    { ico: "mysql", urls: [ "*://dev.mysql.com/doc/*"] },
-    { ico: "postgresql", urls: [ "*://www.postgresql.org/docs/*", "*://www.postgresql.jp/document/*", "*://docs.postgresqlfr.org/*",
+    { ico: "mysql.ico", urls: [ "*://dev.mysql.com/doc/*"] },
+    { ico: "postgresql.ico", urls: [ "*://www.postgresql.org/docs/*", "*://www.postgresql.jp/document/*", "*://docs.postgresqlfr.org/*",
         "*://wiki.postgresql.org/*"] },
 
     // python
-    { ico: "python", urls: [ "*://docs.python.org/", "*://wiki.python.org/", "*://*python.org/dev/peps/*", "*://*python.org/doc/*" ] },
-    { ico: "django", urls: [ "*://docs.djangoproject.com/*"] },
+    { ico: "python.ico", urls: [ "*://docs.python.org/", "*://wiki.python.org/", "*://*python.org/dev/peps/*", "*://*python.org/doc/*" ] },
+    { ico: "django.ico", urls: [ "*://docs.djangoproject.com/*"] },
 
-    { ico: "scipy", urls: [ "*://docs.scipy.org/doc/*", "*://www.scipy.org/Cookbook*" ] },
-    { ico: "", urls: [ "*://matplotlib.org/*" ] },
+    { ico: "scipy.ico", urls: [ "*://docs.scipy.org/doc/*", "*://www.scipy.org/Cookbook*" ] },
+    { ico: ".ico", urls: [ "*://matplotlib.org/*" ] },
 
     // R
-    { ico: "R", urls: [ "*://cran.r-project.org/doc/*", "*://rwiki.sciviews.org/*"] },
+    { ico: "R.ico", urls: [ "*://cran.r-project.org/doc/*", "*://rwiki.sciviews.org/*"] },
 
     // IDL
-    { ico: "idl", urls: [ "*://www.exelisvis.com/docs/*"] },
+    { ico: "idl.ico", urls: [ "*://www.exelisvis.com/docs/*"] },
 
     // C++ (very incomplete)
-    { ico: "boost", urls: [ "*://www.boost.org/doc/*"] },
+    { ico: "boost.ico", urls: [ "*://www.boost.org/doc/*"] },
 
     // eLisp
-    { ico: "gnu", urls: [ "*://www.gnu.org/software/emacs/manual/html_node/elisp/*",
+    { ico: "gnu.ico", urls: [ "*://www.gnu.org/software/emacs/manual/html_node/elisp/*",
         "http://www.gnu.org/software/emacs/manual/html_mono/elisp.html*"] },
 
     ///// javascript ///////
     // jquery
-    { ico: "jquery", urls: [ "*://api.jquery.com/*"] },
+    { ico: "jquery.ico", urls: [ "*://api.jquery.com/*"] },
 
     // prototype
-    { ico: "", urls: [ "*://api.prototypejs.org/*", "*://prototypejs.org/learn/*"] },
+    { ico: ".ico", urls: [ "*://api.prototypejs.org/*", "*://prototypejs.org/learn/*"] },
 
     // d3
-    { ico: "", urls: [ "*://github.com/mbostock/d3/wiki/*"] },
+    { ico: ".ico", urls: [ "*://github.com/mbostock/d3/wiki/*"] },
 
     // yui
-    { ico: "yui", urls: [ "*://yuilibrary.com/yui/docs/*"] },
+    { ico: "yui.ico", urls: [ "*://yuilibrary.com/yui/docs/*"] },
 
     // dojo
-    { ico: "dtk", urls: [ "*://dojotoolkit.org/documentation/*", "*://dojotoolkit.org/reference-guide/*", "*://dojotoolkit.org/api/*"] },
+    { ico: "dtk.ico", urls: [ "*://dojotoolkit.org/documentation/*", "*://dojotoolkit.org/reference-guide/*", "*://dojotoolkit.org/api/*"] },
     // processing
-    { ico: "processingjs", urls: [ "*://processingjs.org/reference/*", "*://processingjs.org/learning/*", "*://processingjs.org/articles/*"]},
+    { ico: "processingjs.ico", urls: [ "*://processingjs.org/reference/*", "*://processingjs.org/learning/*", "*://processingjs.org/articles/*"]},
     // extjs
-    { ico: "sencha", urls: [ "*://docs.sencha.com/*"] },
+    { ico: "sencha.ico", urls: [ "*://docs.sencha.com/*"] },
     // mootools
-    { ico: "mootools", urls: [ "*://mootools.net/docs/*"] },
+    { ico: "mootools.ico", urls: [ "*://mootools.net/docs/*"] },
     // raphael
-    { ico: "raphaeljs", urls: [ "*://raphaeljs.com/reference.html*"] },
+    { ico: "raphaeljs.ico", urls: [ "*://raphaeljs.com/reference.html*"] },
     // rightjs
-    { ico: "", urls: [ "*://rightjs.org/docs*", "*://rightjs.org/tutorials*"] },
+    { ico: ".ico", urls: [ "*://rightjs.org/docs*", "*://rightjs.org/tutorials*"] },
     // threejs
-    { ico: "", urls: [ "*://mrdoob.github.com/three.js/docs/*"] },
+    { ico: ".ico", urls: [ "*://mrdoob.github.com/three.js/docs/*"] },
     // zepto
-    { ico: "zepto", urls: [ "*://zeptojs.com/#*"]},
+    { ico: "zepto.png", urls: [ "*://zeptojs.com/#*"]},
     // shipyard
-    { ico: "", urls: [ "*://seanmonstar.github.com/Shipyard/api/*", "*://seanmonstar.github.com/Shipyard/topics/*"] },
+    { ico: ".ico", urls: [ "*://seanmonstar.github.com/Shipyard/api/*", "*://seanmonstar.github.com/Shipyard/topics/*"] },
     // knockoutjs
-    { ico: "knockoutjs", urls: [ "*://knockoutjs.com/documentation/*" ] },
+    { ico: "knockoutjs.png", urls: [ "*://knockoutjs.com/documentation/*" ] },
     // x toolkit edge
-    { ico: "", urls: [ "*://api.goxtk.com/*" ] },
+    { ico: ".ico", urls: [ "*://api.goxtk.com/*" ] },
     // angularjs
-    { ico: "angularjs", urls: [ "*://docs.angularjs.org/*" ]},
+    { ico: "angularjs.ico", urls: [ "*://docs.angularjs.org/*" ]},
     // enyo
-    { ico: "enyo", urls: [ "*://enyojs.com/api/*", "*://enyojs.com/docs/*", "*://github.com/enyojs/enyo/wiki/*"] },
+    { ico: "enyo.ico", urls: [ "*://enyojs.com/api/*", "*://enyojs.com/docs/*", "*://github.com/enyojs/enyo/wiki/*"] },
     // underscore
-    { ico: "underscore", urls: [ "*://underscorejs.org/#"] },
+    { ico: "underscore.ico", urls: [ "*://underscorejs.org/#"] },
     // bonsai
-    { ico: "bonsai", urls: [ "*://docs.bonsaijs.org/*"] },
+    { ico: "bonsai.ico", urls: [ "*://docs.bonsaijs.org/*"] },
     // kineticjs
-    { ico: "kineticjs", urls: [ "*://kineticjs.com/docs/*"] },
+    { ico: "kineticjs.ico", urls: [ "*://kineticjs.com/docs/*"] },
     // thorax
-    { ico: "", urls: [ "*://thoraxjs.org/api.html*"] },
+    { ico: ".ico", urls: [ "*://thoraxjs.org/api.html*"] },
     // createjs ??
     // qooxdoo
-    { ico: "qx", urls: [ "*://manual.qooxdoo.org/*", "*://demo.qooxdoo.org/*"] },
+    { ico: "qx.png", urls: [ "*://manual.qooxdoo.org/*", "*://demo.qooxdoo.org/*"] },
     // fabricjs // Lots of neat demos, but not in demo subdirectory
-    { ico: "", urls: [ "*://github.com/kangax/fabric.js/wiki*", "*://fabricjs.com/*"]},
+    { ico: ".ico", urls: [ "*://github.com/kangax/fabric.js/wiki*", "*://fabricjs.com/*"]},
     // momentjs
-    { ico: "momentjs", urls: [ "*://momentjs.com/docs/*"] },
+    { ico: "momentjs.ico", urls: [ "*://momentjs.com/docs/*"] },
     //backbone
-    { ico: "backbone", urls: [ "*://backbonejs.org/*" ] },
+    { ico: "backbone.ico", urls: [ "*://backbonejs.org/*" ] },
     //handlebars
-    { ico: "", urls: [ "*://handlebarsjs.com/*"] },
+    { ico: ".ico", urls: [ "*://handlebarsjs.com/*"] },
 
     // OTHER STUFF
 
     // eclipse
-    { ico: "eclipse", urls: [ "*://wiki.eclipse.org/PDE/*", "*://help.eclipse.org/*" ] },
+    { ico: "eclipse.ico", urls: [ "*://wiki.eclipse.org/PDE/*", "*://help.eclipse.org/*" ] },
 
     // java
-    { ico: "oracle", urls: [ "*://docs.oracle.com/javase/*/docs/*" ] },
+    { ico: "oracle.ico", urls: [ "*://docs.oracle.com/javase/*/docs/*" ] },
 
     // scala
-    { ico: "scala", urls: [ "*://www.scala-lang.org/api/*" ]},
+    { ico: "scala.ico", urls: [ "*://www.scala-lang.org/api/*" ]},
 
     // android
-    { ico: "android", urls: [ "*://developer.android.com/*" ]},
+    { ico: "android.png", urls: [ "*://developer.android.com/*" ]},
 
     // iOS
-    { ico: "iOS", urls: [ "*://developer.apple.com/library/ios/*"]},
+    { ico: "iOS.ico", urls: [ "*://developer.apple.com/library/ios/*"]},
 
     // chrome
-    { ico: "chrome", urls: [ "*://developer.chrome.com/extensions/*"]},
+    { ico: "chrome.png", urls: [ "*://developer.chrome.com/extensions/*"]}
 ];
-
-/* GET users listing. */
-router.get('/', function (req, res) {
-    res.json(urls);
-});
 
 module.exports = router;

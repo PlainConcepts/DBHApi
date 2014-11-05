@@ -1,3 +1,5 @@
-/**
- * Created by Alfredo on 11/3/2014.
- */
+var request = require('supertest')
+    , app = require('../../app');
+
+
+
