@@ -4,6 +4,13 @@ var urlRepository = require('./urlRepository');
 
 module.exports = {
     registerRoutes: function(app){
+
+        app.get('/api/urls/:id', function(req, res){
+            urlRepository.findById(req.params.id).then(function(urls){
+                res.json(urls);
+            });
+        });
+
         app.get('/api/urls', function(req, res){
             urlRepository.find().then(function(urls){
                 res.json(urls);
@@ -24,7 +31,7 @@ module.exports = {
 
         app.delete('/api/urls/:id', function(req, res){
             urlRepository.remove(req.params.id).then(function (url) {
-                res.send(url);
+                res.end();
             });
         });
 

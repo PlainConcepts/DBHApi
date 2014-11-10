@@ -60,11 +60,25 @@ var urlRepository = (function (){
             });
 
             return deferred.promise;
+        },
+        findById = function(id){
+            var deferred = Q.defer();
+
+            Model.findById(id, function (err, url) {
+                if(err){
+                    deferred.reject(new Error(err));
+                }else {
+                    deferred.resolve(url._doc);
+                }
+            });
+
+            return deferred.promise;
         };
 
     return {
         create: create,
         find: find,
+        findById: findById,
         update: update,
         remove: remove
     };

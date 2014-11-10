@@ -1,0 +1,91 @@
+<div class="row">
+    <h2 class="form-title text-uppercase" ng-show="url._id">{{::url.name}}</h2>
+
+    <form role="form" name="urlForm" class="col-sm-12 col-md-4" novalidate>
+        <div class="form-group">
+            <label for="nameInput">Name</label>
+            <input type="text" class="form-control" id="nameInput" name="nameInput" placeholder="name" ng-model="url.name" required>
+
+            <div ng-if="urlForm.nameInput.$dirty">
+                <div ng-messages="urlForm.nameInput.$error">
+                    <div ng-message="required" class="invalid">
+                        required
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="icoFileInput">Icon</label>
+            <div class="row">
+                <div class="col-sm-2">
+                    <label for="icoFileInput">
+                        <img class="ico-preview" ng-src="{{url.ico}}"/>
+                    </label>
+                </div>
+                <div class="col-sm-10">
+                    <input type="file" id="icoFileInput" class="hidden" fileread="url.ico" />
+                    <input type="hidden" ng-model="url.ico" name="icoInput" required>
+                    <label for="icoFileInput" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-upload"></span>&nbsp;&nbsp;&nbsp;Select file</label>
+                </div>
+            </div>
+            <div ng-if="urlForm.icoInput.$dirty">
+                <div ng-messages="urlForm.icoInput.$error">
+                    <div ng-message="required" class="invalid">
+                        required
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <label>Patterns</label>
+
+        <div ng-hide="url.urls.length">
+            <div class="alert alert-info" role="alert">there are no patterns</div>
+        </div>
+
+        <div class="row row-spaced" ng-repeat="pattern in url.urls">
+            <div class="col-sm-8">
+                <span ng-bind="pattern"></span>
+            </div>
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="removePattern(pattern)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Remove
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+                <div class="col-sm-9">
+                    <input class="hidden" name="patternsLengthValidator" type="number" min=1 ng-model="url.urls.length"/>
+                    <input type="text" class="form-control" id="newPattern" placeholder="pattern" ng-model="newPattern">
+                </div>
+                <div ng-if="urlForm.patternsLengthValidator.$dirty">
+                    <div ng-messages="urlForm.patternsLengthValidator.$error">
+                        <div ng-message="required" class="invalid">
+                            required
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <button type="button" class="btn btn-default btn-xs pull-right" ng-click="addPattern(newPattern)">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Add pattern
+                    </button>
+                </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="form-buttons">
+            <button type="submit" class="btn btn-primary" ng-click="save()">Submit</button>
+            <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        </div>
+
+    </form>
+</div>

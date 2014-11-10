@@ -10,6 +10,8 @@ var settings = require('./config/settings');
 
 app.use(logger('dev'));
 
+app.use(express.static(__dirname + '/web'));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
