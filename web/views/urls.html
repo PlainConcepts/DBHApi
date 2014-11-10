@@ -1,0 +1,33 @@
+<div>
+    <h1 class="page-header">Patterns</h1>
+    <button type="button" class="btn btn-primary btn-lm" ng-click="createUrl()">
+        <span class="glyphicon glyphicon-plus"></span> Create
+    </button>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ico</th>
+                <th>name</th>
+                <th>patterns</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="url in urls">
+                <td><img src="{{url.ico}}" /> </td>
+                <td><span ng-bind="url.name"></span></td>
+                <td >
+                    <div ng-repeat="pattern in url.urls">
+                        <span ng-bind="pattern"></span>
+                    </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default btn-xs" ng-click="editUrl(url)"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="deleteUrl(url)"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
